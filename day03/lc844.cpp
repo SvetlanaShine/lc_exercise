@@ -17,6 +17,9 @@ class Solution {
                 if (fast < s.size() && s[fast] != '#') {
                     s[slow++] = s[fast];
                 } else {
+                    if (slow > 0) {
+                        s[slow -1] = '#';
+                    }
                     s[slow--] = '#';
                     size--;
                 }
