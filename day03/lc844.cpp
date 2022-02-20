@@ -5,27 +5,22 @@ using namespace std;
 class Solution {
     public:
         bool backspaceCompare(string s, string t) {
-            return sortString(s) == sortString(t);
+            sortString(s);
+            sortString(t);
+            return s == t;
         }
 
     private:
-        string sortString(string s) {
+        void sortString(string &s) {
             int slow = 0;
-            int fast = 0;
-            int size = s.size();
-            while (slow < size) {
-                if (fast < s.size() && s[fast] != '#') {
+            for (int fast = 0; fast < s.size(); fast++) {
+                if (s[fast] != '#') {
                     s[slow++] = s[fast];
-                } else {
-                    if (slow > 0) {
-                        s[slow -1] = '#';
-                    }
-                    s[slow--] = '#';
-                    size--;
+                } else if (slow != 0) {
+                    slow--;
                 }
-                fast++;
             }
-            return s;
+            s.resize(slow);
         }
 
 };
